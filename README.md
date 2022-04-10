@@ -1,3 +1,11 @@
 # AY per test
 
-init git
+## Install
+```bash
+npm i
+```
+
+## Start
+```bash
+npm run dev
+```
