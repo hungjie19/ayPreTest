@@ -1,29 +1,5 @@
 import React, { useState } from 'react';
-const style = {
-  button: {
-    width: '48px',
-    height: '48px',
-    fontSize: '16px',
-    marginRight: '16px',
-    border: '1px solid deepskyblue',
-    background: 'white',
-    color: 'deepskyblue',
-    cursor: 'pointer',
-  },
-  buttonDisabled: {
-    cursor: 'not-allowed',
-    opacity: '0.4',
-  },
-  input: {
-    width: '48px',
-    height: '48px',
-    border: '1px solid grey',
-    marginRight: '16px',
-    background: 'white',
-    color: 'grey',
-    textAlign: 'center',
-  }
-}
+
 const CustomInputNumber = ({
   min = 0,
   max = 0,
@@ -68,22 +44,22 @@ const CustomInputNumber = ({
   const handleBlur = (e) => {
     onBlur(e);
   }
-  const getStyle = sty => disabled ? {...sty, ...style.buttonDisabled} : sty;
+  const getDisabledClass = () => disabled ? 'disabled' : '';
 
   return (
     <div>
-      <button style={getStyle(style.button)} onClick={handleSubtraction}>-</button>
+      <button className={`ay-button ${getDisabledClass()}`} onClick={handleSubtraction}>-</button>
       <input
         type="number"
         name={name}
-        style={getStyle(style.input)}
+        className={`ay-number-input ${getDisabledClass()}`}
         onChange={handleInputChange}
         value={value}
         step={step}
         disabled={disabled}
         onBlur={handleBlur}
       />
-      <button style={getStyle(style.button)} onClick={handleAddition}>+</button>
+      <button className={`ay-button ${getDisabledClass()}`} onClick={handleAddition}>+</button>
     </div>
   );
 }

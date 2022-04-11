@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const paths = {
   DIST: path.resolve(__dirname, 'dist'),
@@ -7,11 +8,9 @@ const paths = {
 };
 
 module.exports = {
-  entry: ['./app/index.jsx'],
   entry: {
     app: [path.join(paths.SRC, 'index.jsx')],
   },
-  
   output: {
     path: paths.DIST,
     publicPath: '/',
@@ -23,6 +22,10 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: './app/index.html'
+    }),
+    new MiniCssExtractPlugin({
+      filename: "[name].css",
+      chunkFilename: "[id].css"
     }),
   ],
   module: {
@@ -51,7 +54,11 @@ module.exports = {
             ] 
           } 
         } 
-      }
+      },
+      {
+        test: /\.s[ac]ss$/i,
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      },
     ]
   },
 };

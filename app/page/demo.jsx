@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import CustomInputNumber from '../components/CustomInputNumber.jsx';
+import '../style/app.scss';
 
 const Demo = () => {
   const [count, setCount] = useState(0);
